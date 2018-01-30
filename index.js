@@ -83,6 +83,8 @@ type Props = {
 
   onBlur: (event: any) => void,
   onFocus: (event: any) => void,
+
+  inputRef: (ref: Component) => void,
 };
 
 type State = {
@@ -183,12 +185,13 @@ export default class NumberInput extends Component {
 
   render() {
     const { focused, value } = this.state;
-    const { format, renderer, ...rest } = this.props;
+    const { format, renderer, inputRef, ...rest } = this.props;
     const displayValue = focused
       ? value
       : toFormattedString(toValue(value), format);
     const props = {
       ...rest,
+      ref: inputRef,
       value: displayValue,
       onFocus: this.onFocus,
       onBlur: this.onBlur,

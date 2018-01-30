@@ -183,12 +183,18 @@ var NumberInput = (function(_Component) {
         var _props = this.props,
           format = _props.format,
           renderer = _props.renderer,
-          rest = _objectWithoutProperties(_props, ['format', 'renderer']);
+          inputRef = _props.inputRef,
+          rest = _objectWithoutProperties(_props, [
+            'format',
+            'renderer',
+            'inputRef',
+          ]);
 
         var displayValue = focused
           ? value
           : toFormattedString(toValue(value), format);
         var props = _extends({}, rest, {
+          ref: inputRef,
           value: displayValue,
           onFocus: this.onFocus,
           onBlur: this.onBlur,
